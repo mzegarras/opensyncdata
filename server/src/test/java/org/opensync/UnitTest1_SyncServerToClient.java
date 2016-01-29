@@ -11,7 +11,6 @@ public class UnitTest1_SyncServerToClient {
 	
 	static Server server;
 	static Client client1;
-	static Client client2;
 	
 	@BeforeClass
     public static void oneTimeSetUp() {
@@ -19,7 +18,7 @@ public class UnitTest1_SyncServerToClient {
     	System.out.println("@BeforeClass - oneTimeSetUp");
     	server = new Server("server");
     	client1 = new Client("client1",server);
-    	client2 = new Client("client2",server);
+    	
     	
     	System.out.println("*** START Creating apples on server");
     	server.addObject("2014-05-10", "apples", "3");
@@ -45,12 +44,23 @@ public class UnitTest1_SyncServerToClient {
     
     @Test
     public void syncClient1() {
-        System.out.println("@Test - syncClient1");
+    	System.out.println("*** START Do sync on client 1");
         client1.doSync();
+        System.out.println("*** END   Do sync on client 1");
+        client1.display();
+        server.display();
+        System.out.println("*** START Sync again on client 1 (no data should be synced)");
+        client1.doSync();
+        System.out.println("*** END Sync again on client 1 (no data should be synced)");
         client1.display();
         server.display();
         
-        client1.doSync();
+        System.out.println("*** START Updating apples on server");
+        server.updateObject("2014-05-10", "5");
+        System.out.println("*** END   Updating apples on server");
+        server.display();
+
+        
     }
 
 }
