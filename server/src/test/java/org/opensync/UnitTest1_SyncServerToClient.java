@@ -49,6 +49,8 @@ public class UnitTest1_SyncServerToClient {
         client1.doSync();
         client1.display();
         server.display();
+        
+        client1.doSync();
     }
 
 }

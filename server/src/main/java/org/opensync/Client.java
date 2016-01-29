@@ -99,7 +99,7 @@ public class Client {
 
 			}
 
-			if (result.getStatuscode() == 0) {
+			if (result.getStatuscode() == 1) {
 				this.servercounter_lastsync = result.getServercounter();
 			}
 
@@ -121,7 +121,7 @@ public class Client {
 
 	private void syncToServer() {
 
-		Server server = new Server("server");
+		
 
 		List<Record> objectsToSync = new ArrayList<Record>();
 

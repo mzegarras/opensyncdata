@@ -17,9 +17,9 @@ public class Server {
 
 	public Result syncToClient(long serverCounterSyncStart, List<Record> objectsToSync) {
 
-		System.out.println("Server received request to sync to client starting at $ServerCounterSyncStart");
+		System.out.println("Server received request to sync to client starting at ServerCounterSyncStart:" + String.valueOf(serverCounterSyncStart));
 
-		objectsToSync = new ArrayList<Record>();
+		//objectsToSync = new ArrayList<Record>();
 
 		for (Record record : records) {
 
@@ -29,7 +29,7 @@ public class Server {
 		}
 
 		Result result = new Result();
-		result.setStatuscode(200);
+		result.setStatuscode(1);
 		result.setServercounter(counter);
 
 		return result;
@@ -50,7 +50,7 @@ public class Server {
 					objectExists = true;
 					object.setValue(objectToSync.getValue());
 					object.setDelete(objectToSync.isDelete());
-					this.counter++; // we must increase the counter, because
+					this.counter+=1; // we must increase the counter, because
 									// other clients must also receive these
 									// updates
 					object.setCounter_lastupdate(this.counter);
@@ -76,7 +76,7 @@ public class Server {
 				Record newObject = new Record(objectToSync.getGuid(), objectToSync.getPk(), objectToSync.getName(),
 						objectToSync.getValue());
 				newObject.setDelete(objectToSync.isDelete());
-				this.counter++;
+				this.counter+=1;
 				newObject.setCounter_lastupdate(this.counter);
 				records.add(newObject);
 			}
@@ -104,7 +104,7 @@ public class Server {
 																	// get
 																	// counter)
 		Record newObject = new Record(null, pk, name, value);
-		this.counter++;
+		this.counter+=1;
 		newObject.setCounter_lastupdate(this.counter);
 		this.records.add(newObject);
 	}
@@ -121,7 +121,7 @@ public class Server {
 				if (object.getPk().compareTo(pk) == 0) {
 					{
 						object.update(value);
-						this.counter++;
+						this.counter+=1;
 						object.setCounter_lastupdate(this.counter);
 						// $object->update($newValue);
 						// $this->counter++;
@@ -140,7 +140,7 @@ public class Server {
             if (object.getPk().compareTo(pk)==0)
             {
             	object.delete();
-            	this.counter++;
+            	this.counter+=1;
             	object.setCounter_lastupdate(this.counter);
             }
         }
