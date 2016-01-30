@@ -7,9 +7,7 @@
     <artifactId>net.msonic.sync</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>net.msonic.sync</groupId>
   <artifactId>net.msonic.sync.domain</artifactId>
-  <version>1.0-SNAPSHOT</version>
   <name>net.msonic.sync.domain</name>
   <url>http://maven.apache.org</url>
   <dependencies>
