@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Server {
+	
+	
 
 	private String name;
 	private int counter;
@@ -29,7 +31,7 @@ public class Server {
 		}
 
 		Result result = new Result();
-		result.setStatuscode(1);
+		result.setStatuscode(Common.Status.OK.getValue());
 		result.setServercounter(counter);
 
 		return result;
@@ -82,7 +84,7 @@ public class Server {
 			}
 		}
 
-		result.setStatuscode(1);
+		result.setStatuscode(Common.Status.OK.getValue());
 		result.setServercounter(this.counter);
 
 		return result;

@@ -5,13 +5,6 @@ import java.util.List;
 
 public class Client {
 
-	private final int TIMESTAMPPRIORITY = 1;// Conflict handling: version with
-											// most recent timestamp_lastupdate
-											// is used
-	private final int SERVERPRIORITY = 2;// Conflict handling: version from
-											// server is used
-	private final int CLIENTPRIORITY = 3;// Conflict handling: version from
-											// client is used
 
 	private final Server server;
 
@@ -25,6 +18,14 @@ public class Client {
 												// last sync from server was
 												// done ($this->syncFromServer)
 	private int conflictHandling;
+
+	public int getConflictHandling() {
+		return conflictHandling;
+	}
+
+	public void setConflictHandling(int conflictHandling) {
+		this.conflictHandling = conflictHandling;
+	}
 
 	public Client(String name,Server server) {
 		super();
@@ -70,12 +71,12 @@ public class Client {
 					// check for conflict (object updated locally since last
 					// sync to server)
 					if (object.getCounter_lastupdate() > this.counter_lastsync) {
-						if (conflictHandling == SERVERPRIORITY) {
+						if (conflictHandling == Common.ConflictHandling.SERVERPRIORITY.getValue()) {
 							object.setValue(objectToSync.getValue());
 							object.setDelete(objectToSync.isDelete());
-						} else if (conflictHandling == CLIENTPRIORITY) {
+						} else if (conflictHandling == Common.ConflictHandling.CLIENTPRIORITY.getValue()) {
 							// no change to local object
-						} else if (conflictHandling == TIMESTAMPPRIORITY) {
+						} else if (conflictHandling == Common.ConflictHandling.TIMESTAMPPRIORITY.getValue()) {
 
 							if (objectToSync.getTimeStampUpdated() > object.getTimeStampUpdated()) {
 								object.setValue(objectToSync.getValue());
@@ -200,12 +201,12 @@ public class Client {
 				System.out.println("Error creating new object on client " + this.name + ": primary key " + pk
 						+ " already in use!");
 			}
-
-			Record newObject = new Record(null, pk, name, value);
-			this.counter++;
-			newObject.setCounter_lastupdate(this.counter);
-			this.records.add(newObject);
 		}
+
+		Record newObject = new Record(null, pk, name, value);
+		this.counter+=1;
+		newObject.setCounter_lastupdate(this.counter);
+		this.records.add(newObject);
 	}
 
 	/*
@@ -217,7 +218,7 @@ public class Client {
 			{
 				if (object.getPk().compareTo(pk) == 0) {
 					object.update(newValue);
-					this.counter++;
+					this.counter+=1;
 					object.setCounter_lastupdate(this.counter);
 				}
 			}
@@ -234,7 +235,7 @@ public class Client {
 				if (object.getPk().compareTo(pk) == 0) {
 					{
 						object.delete();
-						this.counter++;
+						this.counter+=1;;
 						object.setCounter_lastupdate(this.counter);
 					}
 				}
