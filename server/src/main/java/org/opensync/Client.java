@@ -108,16 +108,31 @@ public class Client {
 	}
 
 	public void debugOutput(String text, List<Record> objects) {
+		System.out.println(text);
+		if(objects==null || objects.size()<=0){
+			System.out.println("None");
+		}else{
+			System.out.println(objects.size());
+		}
+		
 		for (Record object : objects) {
 			object.toString();
 		}
 	}
 
 	public void display() {
-		System.out.println(String.format("name: %s", this.name));
-		System.out.println(String.format("counter: %s", this.counter));
+		System.out.println("----------------------------------------");
 
-		debugOutput("Objects on server:", this.records);
+
+		System.out.println(String.format("State of client: name: %s - counter: %s - counter last sync: %s - - Server counter last sync:%s", 
+																		this.name,
+																		this.counter,
+																		this.counter_lastsync,
+																		this.servercounter_lastsync));
+		
+
+		debugOutput("Objects on client:", this.records);
+		
 	}
 
 	private void syncToServer() {
@@ -134,7 +149,7 @@ public class Client {
 			}
 
 		}
-
+		System.out.println("----------------------------------------");
 		debugOutput(" Sync to server - objects to send to server:", objectsToSync);
 
 		Result result = server.syncFromClient(objectsToSync); // in reality

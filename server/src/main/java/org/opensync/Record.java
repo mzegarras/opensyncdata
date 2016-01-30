@@ -18,7 +18,8 @@ public class Record {
 
 	public Record(String guid, String pk, String name, String value) {
 		super();
-		if(this.guid==null){
+		
+		if(guid==null){
 			UUID uuid = UUID.randomUUID();
 			this.guid = uuid.toString();
 		}else{

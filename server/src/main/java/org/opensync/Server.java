@@ -143,16 +143,28 @@ public class Server {
 	}
 	
 	public void debugOutput(String text,List<Record> objects){
+		System.out.println(text);
+		if(objects==null || objects.size()<=0){
+			System.out.println("None");
+		}else{
+			System.out.println(objects.size());
+		}
+		
+		
 		for (Record object : objects) {
 			object.toString();
 		}
 	}
 	
 	public void display(){
-		System.out.println(String.format("name: %s", this.name));
-		System.out.println(String.format("counter: %s", this.counter));
+		System.out.println("----------------------------------------");
+		
+		System.out.println(String.format("name: %s - counter: %s", 
+				this.name,
+				this.counter));
 		
 		debugOutput("Objects on server:",this.records);
+		System.out.println("----------------------------------------");
 	}
 
 }

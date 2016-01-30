@@ -17,14 +17,18 @@ public class UnitTest3_SynTwoClientes {
         // one-time initialization code   
     	System.out.println("@BeforeClass - oneTimeSetUp");
     	server = new Server("server");
+    	
+    	
+    	
     	client1 = new Client("client1",server);
     	client1.setConflictHandling(Common.ConflictHandling.TIMESTAMPPRIORITY.getValue());
     	
     	client2 = new Client("client2",server);
     	client2.setConflictHandling(Common.ConflictHandling.TIMESTAMPPRIORITY.getValue());
     	
-    	server.display();
     	client1.display();
+    	server.display();
+    	
    
     }
 
@@ -52,7 +56,7 @@ public class UnitTest3_SynTwoClientes {
     	System.out.println("*** END   Creating apples on client 1");
     	client1.display();
     	
-    	System.out.println("==============================");
+    	
     	System.out.println("*** START Do sync on client 1");
     	client1.doSync();
     	System.out.println("*** END   Do sync on client 1");
@@ -62,37 +66,37 @@ public class UnitTest3_SynTwoClientes {
     	
     	
     	
-    	System.out.println("==============================");
+    	
     	System.out.println("*** START Do sync on client 2");
     	client2.doSync();
     	System.out.println("*** END   Do sync on client 2");
     	client2.display();
     	server.display();
-    	System.out.println("==============================");
     	
     	
-    	System.out.println("==============================");
+    	
+    	
     	System.out.println("*** START Sync again on client 1 (no data should be synced)");
     	client1.doSync();
     	System.out.println("*** END Sync again on client 1 (no data should be synced)");
     	client1.display();
     	server.display();
     	
-    	System.out.println("==============================");
+    	
     	System.out.println("*** START Sync again on client 2 (no data should be synced)");
     	client2.doSync();
     	System.out.println("*** END Sync again on client 2 (no data should be synced)");
     	client2.display();
     	server.display();
     	
-    	System.out.println("==============================");
+    	
     	System.out.println("*** START Updating apples on client 1");
     	client1.updateObject("2014-05-10", "5");
     	System.out.println("*** END   Updating apples on client 1");
     	client1.display();
     	
     	
-    	System.out.println("==============================");
+    	
     	System.out.println("*** START Do sync on client 1");
     	client1.doSync();
     	System.out.println("*** END   Do sync on client 1");
@@ -101,7 +105,7 @@ public class UnitTest3_SynTwoClientes {
     	
     	
     	
-    	System.out.println("==============================");
+    	
     	System.out.println("*** START Do sync on client 2");
     	client2.doSync();
     	System.out.println("*** END   Do sync on client 2");
@@ -109,13 +113,13 @@ public class UnitTest3_SynTwoClientes {
     	server.display();
     	
 
-    	System.out.println("==============================");
+    	
     	System.out.println("*** START Updating apples on client 2");
     	client2.updateObject("2014-05-10", "7");
     	System.out.println("*** END   Updating apples on client 2");
     	client2.display();
     	
-    	System.out.println("==============================");
+    	
     	System.out.println("*** START Do sync on client 2");
     	client2.doSync();
     	System.out.println("*** END   Do sync on client 2");
@@ -123,17 +127,12 @@ public class UnitTest3_SynTwoClientes {
     	server.display();
     	
     	
-    	
-    	
-    	System.out.println("==============================");
     	System.out.println("*** START Do sync on client 1");
     	client1.doSync();
     	System.out.println("*** END   Do sync on client 1");
     	client1.display();
     	server.display();
-    	
-    	
-    	System.out.println("==============================");
+
     	System.out.println("*** START Do sync on client 2");
     	client2.doSync();
     	System.out.println("*** END   Do sync on client 2");
