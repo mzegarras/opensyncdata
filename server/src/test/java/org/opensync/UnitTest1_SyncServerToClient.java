@@ -18,7 +18,7 @@ public class UnitTest1_SyncServerToClient {
     	System.out.println("@BeforeClass - oneTimeSetUp");
     	server = new Server("server");
     	client1 = new Client("client1",server);
-    	
+    	client1.setConflictHandling(Common.ConflictHandling.TIMESTAMPPRIORITY.getValue());
     	
     	System.out.println("*** START Creating apples on server");
     	server.addObject("2014-05-10", "apples", "3");

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Result {
 	
-	private int statuscode;
+	private int statuscode = Common.Status.NOSET.getValue();
 	private long servercounter;
 	private List<Record> recors;
 	

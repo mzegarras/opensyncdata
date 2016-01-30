@@ -20,8 +20,10 @@ public class UnitTest2_SyncClientToServer {
     	System.out.println("@BeforeClass - oneTimeSetUp");
     	server = new Server("server");
     	client1 = new Client("client1",server);
-    	client2 = new Client("client2",server);
+    	client1.setConflictHandling(Common.ConflictHandling.TIMESTAMPPRIORITY.getValue());
     	
+    	client2 = new Client("client2",server);
+    	client2.setConflictHandling(Common.ConflictHandling.TIMESTAMPPRIORITY.getValue());
     	
     	
     	client1.display();

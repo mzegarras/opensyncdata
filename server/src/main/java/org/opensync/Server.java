@@ -56,21 +56,13 @@ public class Server {
 									// other clients must also receive these
 									// updates
 					object.setCounter_lastupdate(this.counter);
-				} else if (object.getPk().compareTo(objectToSync.getPk()) == 0) {// this
-																					// means
-																					// object
-																					// with
-																					// other
-																					// guid
-																					// but
-																					// with
-																					// same
-																					// PK
-																					// (primary
-																					// key)
+				} else if (object.getPk().compareTo(objectToSync.getPk()) == 0) {//this means object with other guid but with same PK (primary key)
+					//PK conflict: do nothing, because this should not occur on server
+                    //client will always sync from server to client first and handle any PK conflicts, before syncing from client to server
+					
 					objectExists = true;
 					pkConflict = true;
-					result.setStatuscode(0);
+					result.setStatuscode(Common.Status.NOOK.getValue());
 				}
 			}
 
@@ -84,7 +76,9 @@ public class Server {
 			}
 		}
 
-		result.setStatuscode(Common.Status.OK.getValue());
+		if(result.getStatuscode()==Common.Status.NOSET.getValue()){
+			result.setStatuscode(Common.Status.OK.getValue());
+		}
 		result.setServercounter(this.counter);
 
 		return result;

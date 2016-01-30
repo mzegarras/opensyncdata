@@ -68,8 +68,7 @@ public class Client {
 						object.setGuid(objectToSync.getGuid()); // merge objects
 					}
 
-					// check for conflict (object updated locally since last
-					// sync to server)
+					// check for conflict (object updated locally since last sync to server)
 					if (object.getCounter_lastupdate() > this.counter_lastsync) {
 						if (conflictHandling == Common.ConflictHandling.SERVERPRIORITY.getValue()) {
 							object.setValue(objectToSync.getValue());
@@ -89,21 +88,22 @@ public class Client {
 						object.setDelete(objectToSync.isDelete());
 					}
 				}
-
-				if (!objectExists) {
-					Record newObject = new Record(objectToSync.getGuid(), objectToSync.getPk(), objectToSync.getName(),
-							objectToSync.getValue());
-					newObject.setDelete(objectToSync.isDelete());
-					newObject.setCounter_lastupdate(this.counter);
-					records.add(newObject);
-				}
-
+			}
+			
+			if (!objectExists) {
+				Record newObject = new Record(objectToSync.getGuid(), objectToSync.getPk(), objectToSync.getName(),
+						objectToSync.getValue());
+				newObject.setDelete(objectToSync.isDelete());
+				newObject.setCounter_lastupdate(this.counter);//do not increase $this->counter because no change that must be synced back to server
+				records.add(newObject);
 			}
 
-			if (result.getStatuscode() == 1) {
-				this.servercounter_lastsync = result.getServercounter();
-			}
 
+		}
+		
+
+		if (result.getStatuscode() == 1) {
+			this.servercounter_lastsync = result.getServercounter();
 		}
 	}
 
