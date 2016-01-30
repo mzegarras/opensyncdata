@@ -53,7 +53,7 @@ public class UnitTest9_FullSync {
     @Test
     public void syncClient1() throws InterruptedException {	
     	System.out.println("*** START Creating apples with PK 2014-06-20 on client 1");
-    	client1.addObject("2014-06-20", "apples", "3");
+    	client1.addObject("2014-05-10", "apples", "3");
     	System.out.println("*** END   Creating cherries on client 1");
     	client1.display();
     	
