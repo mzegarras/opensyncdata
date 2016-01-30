@@ -11,6 +11,10 @@ public class Server {
 	private int counter;
 	private List<Record> records;
 
+	public List<Record> getRecords() {
+		return records;
+	}
+
 	public Server(String name) {
 		super();
 		this.name = name;
