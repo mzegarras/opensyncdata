@@ -30,19 +30,19 @@ public class Record {
 		this.name = name;
 		this.value = value;
 		
-		this.timeStampCreated=System.currentTimeMillis();
-		this.timeStampLastUpdated=System.currentTimeMillis();
+		this.timeStampCreated=System.currentTimeMillis()/1000L;
+		this.timeStampLastUpdated=System.currentTimeMillis()/1000L;
 		
 	}
 	
 	public void update(String value){
 		this.value=value;
-		this.timeStampLastUpdated=System.currentTimeMillis();
+		this.timeStampLastUpdated=System.currentTimeMillis()/1000L;
 	}
 	
 	public void delete(){
 		this.delete=true;
-		this.timeStampLastUpdated=System.currentTimeMillis();
+		this.timeStampLastUpdated=System.currentTimeMillis()/1000L;
 	}
 
 	public String getGuid() {

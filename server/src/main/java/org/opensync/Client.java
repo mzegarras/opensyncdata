@@ -80,7 +80,7 @@ public class Client {
 							if (objectToSync.getTimeStampUpdated() > object.getTimeStampUpdated()) {
 								object.setValue(objectToSync.getValue());
 								object.setDelete(objectToSync.isDelete());
-								object.setTimeStampUpdated(System.currentTimeMillis());
+								object.setTimeStampUpdated(System.currentTimeMillis() / 1000L);
 							}
 						}
 					} else { // no conflict: update object locally
