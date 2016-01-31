@@ -16,7 +16,7 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		
 		
-		String SQL_INSERT = "INSERT INTO Product (id,guid,name,value,counterLastUpdate,delete) VALUES (?, ?, ?,?,?,?)";
+		String SQL_INSERT = "INSERT INTO `Product` (`id`,`guid`,`name`,`value`,`counterLastUpdate`,`delete`) VALUES (?,?,?,?,?,?);";
 		
 		jdbcTemplate.update(SQL_INSERT, new Object[] { 
 				product.getPk(),
@@ -24,7 +24,7 @@ public class ProductDaoImpl implements ProductDao {
 				product.getName(),
 				product.getValue(),
 				product.getCounter_lastupdate(),
-				product.isDelete()
+				"1"
 			});
 		
 	}
