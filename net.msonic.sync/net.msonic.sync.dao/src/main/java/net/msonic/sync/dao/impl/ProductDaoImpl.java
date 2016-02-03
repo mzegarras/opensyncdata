@@ -24,7 +24,22 @@ public class ProductDaoImpl implements ProductDao {
 				product.getName(),
 				product.getValue(),
 				product.getCounter_lastupdate(),
-				"1"
+				(product.isDelete()?1:0)
+			});
+		
+	}
+
+	public void update(Product product) {
+		// TODO Auto-generated method stub
+		
+		String SQL_UPDATE = "UPDATE `Product` SET `name` = ?, `value` = ?, `counterLastUpdate` = ?, `delete` = ? WHERE 'id' = ?;";
+		
+		jdbcTemplate.update(SQL_UPDATE, new Object[] { 
+				product.getName(),
+				product.getValue(),
+				product.getCounter_lastupdate(),
+				(product.isDelete()?1:0),
+				product.getPk()
 			});
 		
 	}
