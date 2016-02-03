@@ -77,7 +77,7 @@ public class ProductDaoImpl implements ProductDao {
 			product.setCounter_lastupdate(rs.getInt("counterLastUpdate"));
 			
 			product.setDelete(rs.getInt("delete")==1?true:false);	
-			return null;
+			return product;
 		}
 		
 	}

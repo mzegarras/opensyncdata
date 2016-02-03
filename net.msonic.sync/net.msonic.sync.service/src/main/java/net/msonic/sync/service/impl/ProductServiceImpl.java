@@ -22,4 +22,18 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.list();
 	}
 
+
+	@Override
+	public Product byId(String pk) {
+		// TODO Auto-generated method stub
+		return productDao.byId(pk);
+	}
+
+
+	@Override
+	public void update(Product product) {
+		// TODO Auto-generated method stub
+		productDao.update(product);
+	}
+
 }
